@@ -5,7 +5,7 @@ const DisplayBalance = ({ title, value, color = "black", size = "tiny" }) => {
   return (
     <Statistic color={color} size={size}>
       <Statistic.Label style={{ textAlign: "Left" }}>{title}:</Statistic.Label>
-      <Statistic.Value>{value}</Statistic.Value>
+      <Statistic.Value>{value}$</Statistic.Value>
     </Statistic>
   );
 };
