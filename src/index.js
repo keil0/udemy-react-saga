@@ -1,15 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 
-import "semantic-ui-css/semantic.min.css"
+import "semantic-ui-css/semantic.min.css";
 
 import "./index.css";
 
 import App from "./App";
 
+import configureStore from "./store/configureStore";
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={configureStore()}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
