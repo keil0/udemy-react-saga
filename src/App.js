@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "semantic-ui-react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./App.css";
 
@@ -12,7 +12,11 @@ import DisplayBalances from "./components/DisplayBalances";
 import EntryLines from "./components/EntryLines";
 import ModalEdit from "./components/ModalEdit";
 
+// Actions
+import { getAllEntries } from "./actions/entries.actions";
+
 function App() {
+  const dispatch = useDispatch();
   const [incomeTotal, setIncomeTotal] = useState(0);
   const [expenseTotal, setExpenseTotal] = useState(0);
   const [total, setTotal] = useState(0);
@@ -24,7 +28,7 @@ function App() {
   useEffect(() => {
     const index = entries.findIndex((entry) => entry.id === id);
     setEntry(entries[index]);
-  }, [isOpen, id]);
+  }, [isOpen, id, entries]);
 
   // Compute totals
   useEffect(() => {
@@ -41,6 +45,10 @@ function App() {
     setExpenseTotal(totalExpenses);
     setIncomeTotal(totalIncomes);
   }, [entries]);
+
+  useEffect(() => {
+    dispatch(getAllEntries());
+  });
 
   return (
     <Container>
